@@ -1,5 +1,5 @@
 import test, { Page, expect } from '@playwright/test';
-import { SimpleFormDemoActions } from '../pages/simpleFormDemo.actions';
+import { SimpleFormDemoActions } from '../pages/simpleFormDemo/simpleFormDemo.actions';
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 import { TIMEOUT } from 'dns';
 

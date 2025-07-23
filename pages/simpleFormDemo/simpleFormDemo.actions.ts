@@ -1,6 +1,6 @@
 import { Page, expect } from '@playwright/test';
 import { SimpleFormLocators } from './simpleFormDemo.locators';
-import { HomePageActions } from './homePage/homePage.actions';
+import { HomePageActions } from '../homePage/homePage.actions';
 
 export class SimpleFormDemoActions extends HomePageActions {
   private locators: SimpleFormLocators;
