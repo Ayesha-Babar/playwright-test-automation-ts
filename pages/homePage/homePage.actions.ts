@@ -1,25 +1,26 @@
-import { Page,expect } from '@playwright/test';
-import { HomePageLocators } from './homePage.locators';
+import { Locator, Page,expect } from '@playwright/test';
 export class HomePageActions{
-    private locator: HomePageLocators;
     protected message: string;
     
-    constructor(private page: Page) {
-      this.locator= new HomePageLocators(page);
-    }
+    constructor(protected page: Page) {}
+      
 
     async waitForPageToLoad(): Promise<void> {
     await this.page.waitForLoadState('load'); // waits for full page load including styles, images, etc.
     }
 
-
     async navigateToHomePage(url:string) {
     await this.page.goto(url);
     }
 
-    async clickSimpleFormDemoLink(){
-      await this.locator.simpleFormDemo.click();
+  //dynamic method to create locators and click on them
+    async clickLinks(linkText:string)
+    {
+      await this.waitForPageToLoad();
+      const linklocator = this.page.locator(`//a[text()="${linkText}"]`);
+      linklocator.click();
     }
+
   }
   
 
