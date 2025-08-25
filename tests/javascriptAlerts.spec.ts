@@ -2,7 +2,7 @@ import test, { Page, expect } from '@playwright/test';
 import { javascriptAlertsActions } from '../pages/javascriptAlerts/javascriptAlerts.actions';
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 
-test("should click on alert buttons and accept them", async ({ page }) => {
+test("javascript alerts", async ({ page }) => {
    
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");

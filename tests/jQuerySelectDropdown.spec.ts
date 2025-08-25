@@ -4,7 +4,7 @@ import { HomePageActions } from '../pages/homePage/homePage.actions';
 import assert from 'assert';
 
 
-test("should enter a message and verify output", async ({ page }) => {
+test("jQuery Select dropdown", async ({ page }) => {
     
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");

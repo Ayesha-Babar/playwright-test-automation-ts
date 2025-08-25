@@ -3,7 +3,7 @@ import {BootstrapAlertsActions } from '../pages/bootstrapAlerts/bootstrapAlerts.
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 
 
-test("should enter a message and verify output", async ({ page }) => {
+test("bootstrap alerts", async ({ page }) => {
     let NoOfTimes = 3; // Number of times to move elements
     
     const homePage = new HomePageActions(page);

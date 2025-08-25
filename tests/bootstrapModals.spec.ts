@@ -3,7 +3,7 @@ import { bootstrapModalActions } from '../pages/bootstrapModals/bootstrapModals.
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 
 
-test("should enter a message and verify output", async ({ page }) => {
+test("boot strap modals", async ({ page }) => {
     
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");

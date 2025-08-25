@@ -3,7 +3,7 @@ import { test} from '@playwright/test';
 import { TableDataDownloadActions } from '../pages/tableDataDownload/tableDataDownload.actions';
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 
-test("should enter a message and verify output", async ({ page }) => {
+test("Table Download", async ({ page }) => {
     
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");

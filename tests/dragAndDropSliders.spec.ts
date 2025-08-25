@@ -2,7 +2,7 @@ import test, { Page, expect } from '@playwright/test';
 import { dragAndDropSliderActions } from '../pages/dragAndDropSliders/dragAndDropSliders.actions';
 import { HomePageActions } from '../pages/homePage/homePage.actions';
 
-test("should enter a message and verify output", async ({ page }) => {
+test("drag and drop sliders", async ({ page }) => {
    
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");

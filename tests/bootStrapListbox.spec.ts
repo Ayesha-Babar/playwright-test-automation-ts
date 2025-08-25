@@ -4,7 +4,7 @@ import { HomePageActions } from '../pages/homePage/homePage.actions';
 import assert from 'assert';
 
 
-test("should enter a message and verify output", async ({ page }) => {
+test("boot strap list box", async ({ page }) => {
     let NoOfTimes = 3; // Number of times to move elements
     
     const homePage = new HomePageActions(page);

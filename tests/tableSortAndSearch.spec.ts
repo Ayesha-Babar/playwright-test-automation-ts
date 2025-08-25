@@ -1,7 +1,7 @@
 import { test,expect} from '@playwright/test';
 import { TableSortActions } from '../pages/tableSortAndSearch/tableSort.actions';
 import { HomePageActions } from '../pages/homePage/homePage.actions';
-test("should enter a message and verify output", async ({ page }) => {
+test("Table Sort and Search", async ({ page }) => {
     
     const homePage = new HomePageActions(page);
     await homePage.navigateToHomePage("https://www.lambdatest.com/selenium-playground/");
