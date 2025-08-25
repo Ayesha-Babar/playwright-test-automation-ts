@@ -1,7 +1,6 @@
 import { Page, expect } from '@playwright/test';
 import {tablePaginationLocators } from './tablePagination.locators';
 import { HomePageActions } from '../homePage/homePage.actions';
-import { tableFilterLocators } from '../tableFilter/tableFilter.locators';
 
 export class TablePaginationActions extends HomePageActions {
   private locators:tablePaginationLocators;

@@ -1,10 +1,9 @@
 import { Page, expect } from '@playwright/test';
 import { bootstrapAlertsLocators } from './bootstrapAlerts.locators';
 import { HomePageActions } from '../homePage/homePage.actions';
-import assert from 'assert';
 
 export class BootstrapAlertsActions extends HomePageActions {
-  private locators: bootstrapAlertsLocators;
+  private locators: bootstrapAlertsLocators
   protected message: string;
 
   constructor(page: Page) {
@@ -15,35 +14,47 @@ export class BootstrapAlertsActions extends HomePageActions {
 
   async isBootstrapAlertsHeadingVisible(): Promise<boolean> {
     await this.waitForPageToLoad();
-    return await this.locators.bootstrapDualListHeading.isVisible();
+    return await this.locators.bootstrapAlertsHeading.isVisible();
   }
 
-  async getElementCountInLeftList(): Promise<number> {
+  async verifyAutoclosableSuccessMessageOption(){
     await this.waitForPageToLoad();
-    return await this.locators.elementsListLeft.count();
+    await this.locators.autoclosableSuccessMessageButton.click();
+    await expect(this.locators.autocloseableSuccessMessageAlert).toBeVisible();
+    //await expect(this.locators.autocloseableSuccessMessageAlert).toHaveText('Autocloseable success message. Hide in 5 seconds.');
+    //verify if it disappears after 5secs
+    await this.locators.autocloseableSuccessMessageAlert.waitFor({ state: 'detached', timeout: 6000 });
   }
 
-  async getElementCountInRightList(): Promise<number> {
+  async verifyNormalSuccessMesageOption(){
     await this.waitForPageToLoad();
-    return await this.locators.elementsListRight.count();
+    await this.locators.normalSuccessMessageButton.click();
+    expect(this.locators.normalSuccessMessageAlert).toBeVisible();
+    expect(this.locators.normalSuccessMessageAlert).toContainText('Normal success message. To close use the close button.');
+    await this.locators.alertCloseButton.nth(0).click();
   }
 
+  async verifyAutoclosableInfoMessageOption(){
+    await this.waitForPageToLoad()
+    await this.locators.autoclosableInfoMessageButton.click();
+    await expect( this.locators.autocloseableInfoMessageAlert).toBeVisible();
+    await expect(this.locators.autocloseableInfoMessageAlert).toContainText('Autocloseable info message. Hide in 5 seconds.');
+    await this.locators.autocloseableInfoMessageAlert.waitFor({ state: 'detached', timeout: 6000 });
+  }
 
-  async moveElementLeft(NoOfTimes: number) {
+ async verifyNormalInfoMessageOption() {
     await this.waitForPageToLoad();
+    await this.locators.normalInfoMessageButton.click();
 
-    for (let i = 0; i < NoOfTimes; i++) {
-      await this.locators.targetList.nth(0).click();
-      await this.locators.leftButton.click();
-    }
-  }
+    const alert = await this.locators.normalInfoMessageAlert;
+    await expect(alert).toBeVisible();
+    await expect(alert).toContainText('Normal info message.To close use the close button.');
 
-   async moveElementRight(NoOfTimes: number) {
-    await this.waitForPageToLoad();
+    // Get the close button inside THIS alert
+    const closeBtn = alert.locator('a[aria-label="close"]');
 
-    for (let i = 0; i < NoOfTimes; i++) {
-      await this.locators.sourceList.nth(0).click();
-      await this.locators.rightButton.click();
-    }
-  }
+    await closeBtn.waitFor({ state: 'visible', timeout: 5000 });
+    await closeBtn.click({ force: true });
+}
+
 }
